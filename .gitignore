@@ -25,3 +25,7 @@ Thumbs.db
 ~$*.docx
 ~$*.xlsx
 ~$*.pptx
+
+# ---- Submitted separately on LMS (kept out of the repo) ----
+/SS Test Evidence/
+/STIWK2124-A3-Group7-Reflection.docx
