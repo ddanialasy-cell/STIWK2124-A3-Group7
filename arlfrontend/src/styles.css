@@ -1,0 +1,136 @@
+/* ============================================================
+   ARL – Accessible Reading List  •  Global "library" theme
+   Warm brown / cream palette layered on top of Bootstrap.
+   ============================================================ */
+
+:root {
+  --arl-primary: #8b5e34;        /* warm brown   */
+  --arl-primary-dark: #5c3d21;   /* dark coffee  */
+  --arl-primary-light: #b08968;  /* light tan    */
+  --arl-accent: #c2854b;         /* caramel      */
+  --arl-bg: #f5ece0;             /* cream page   */
+  --arl-surface: #fffaf3;        /* card surface */
+  --arl-border: #e0d3c0;         /* soft border  */
+  --arl-text: #3d2c1e;           /* dark text    */
+  --arl-muted: #8a7660;          /* muted text   */
+}
+
+body {
+  background-color: var(--arl-bg);
+  color: var(--arl-text);
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* ---------- Headings & text ---------- */
+h1, h2, h3, h4, h5 {
+  color: var(--arl-primary-dark);
+}
+
+.text-muted {
+  color: var(--arl-muted) !important;
+}
+
+/* ---------- Primary button ---------- */
+.btn-arl {
+  background-color: var(--arl-primary);
+  border: 1px solid var(--arl-primary);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-arl:hover,
+.btn-arl:focus {
+  background-color: var(--arl-primary-dark);
+  border-color: var(--arl-primary-dark);
+  color: #fff;
+}
+
+.btn-arl:active {
+  transform: translateY(1px);
+}
+
+.btn-arl-outline {
+  background-color: transparent;
+  border: 1px solid var(--arl-primary);
+  color: var(--arl-primary-dark);
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.btn-arl-outline:hover {
+  background-color: var(--arl-primary);
+  color: #fff;
+}
+
+/* ---------- Cards ---------- */
+.arl-card {
+  background: var(--arl-surface);
+  border: 1px solid var(--arl-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(74, 49, 24, 0.08);
+}
+
+/* ---------- Forms ---------- */
+.form-control,
+.form-control:focus {
+  background-color: #fff;
+  border: 1px solid var(--arl-border);
+  border-radius: 8px;
+  color: var(--arl-text);
+}
+
+.form-control:focus {
+  border-color: var(--arl-primary-light);
+  box-shadow: 0 0 0 0.2rem rgba(176, 137, 104, 0.25);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--arl-primary-dark);
+}
+
+/* ---------- Tables ---------- */
+.arl-table {
+  background: var(--arl-surface);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(74, 49, 24, 0.08);
+}
+
+.arl-table thead {
+  background-color: var(--arl-primary);
+  color: #fff;
+}
+
+.arl-table thead th {
+  border: none;
+  font-weight: 600;
+  padding: 0.9rem 1rem;
+}
+
+.arl-table tbody td {
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+  border-color: var(--arl-border);
+}
+
+.arl-table tbody tr:nth-child(even) {
+  background-color: #faf3e9;
+}
+
+.arl-table tbody tr:hover {
+  background-color: #f0e2cf;
+}
+
+/* ---------- Simple fade animation ---------- */
+.animate-fade {
+  animation: arlFade 0.4s ease-in;
+}
+
+@keyframes arlFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

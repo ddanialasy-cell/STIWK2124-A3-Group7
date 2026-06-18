@@ -1,0 +1,48 @@
+<div class="container py-3">
+  @if (alertMessage()) {
+    <div class="d-flex justify-content-center">
+      <div class="alert text-center w-75 animate-fade {{ alertClass() }}" style="max-width: 640px;" role="alert">
+        {{ alertMessage() }}
+      </div>
+    </div>
+  }
+
+  <div class="d-flex justify-content-center mb-4">
+    <form class="d-flex w-75" style="max-width: 640px;" (ngSubmit)="searchDeleteBook()">
+      <input class="form-control me-2" type="number" id="bookIDInput" name="searchBookID"
+        [(ngModel)]="searchBookID" #search="ngModel" required
+        placeholder="Enter Book ID to remove" aria-label="Enter Book ID"
+        [class.is-invalid]="search.invalid && search.touched" />
+      <button class="btn btn-arl px-4" type="submit">Search</button>
+    </form>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <form class="arl-card p-4 w-75" style="max-width: 640px;">
+      <h4 class="mb-4"><b>🗑️ Remove Book (ID: {{ retrievedBook.bookID || 'None' }})</b></h4>
+
+      <div class="mb-3">
+        <label for="delBookTitleInput" class="form-label">Book Title</label>
+        <input type="text" class="form-control" id="delBookTitleInput" [value]="retrievedBook.bookTitle" disabled />
+      </div>
+
+      <div class="mb-3">
+        <label for="delBookAuthorInput" class="form-label">Book Author</label>
+        <input type="text" class="form-control" id="delBookAuthorInput" [value]="retrievedBook.bookAuthor" disabled />
+      </div>
+
+      <div class="mb-3">
+        <label for="delBookDescriptionInput" class="form-label">Book Description</label>
+        <input type="text" class="form-control" id="delBookDescriptionInput" [value]="retrievedBook.bookDescription" disabled />
+      </div>
+
+      <div class="mb-4">
+        <label for="delBookCategoryInput" class="form-label">Book Category</label>
+        <input type="text" class="form-control" id="delBookCategoryInput" [value]="retrievedBook.bookCategory" disabled />
+      </div>
+
+      <button type="button" class="btn text-white px-4" style="background-color:#a4452f;"
+        [disabled]="retrievedBook.bookID === 0" (click)="removeBook()">Delete</button>
+    </form>
+  </div>
+</div>

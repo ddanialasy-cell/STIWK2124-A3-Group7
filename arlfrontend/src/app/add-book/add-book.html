@@ -1,0 +1,66 @@
+<div class="container py-3">
+  @if (addSuccess()) {
+    <div class="d-flex justify-content-center">
+      <div class="alert alert-success text-center w-75 animate-fade" style="max-width: 640px;" role="alert">
+        {{ addSuccess() }} <a href="/library" class="alert-link">View in Library</a>
+      </div>
+    </div>
+  }
+
+  @if (addError()) {
+    <div class="d-flex justify-content-center">
+      <div class="alert alert-danger text-center w-75 animate-fade" style="max-width: 640px;" role="alert">
+        {{ addError() }}
+      </div>
+    </div>
+  }
+
+  <div class="d-flex justify-content-center">
+    <form class="arl-card p-4 w-75" style="max-width: 640px;" #bookForm="ngForm"
+      (ngSubmit)="bookForm.form.valid && addBook()">
+      <h4 class="mb-4"><b>➕ Add Book</b></h4>
+
+      <div class="mb-3">
+        <label for="bookTitleInput" class="form-label">Book Title</label>
+        <input type="text" class="form-control" id="bookTitleInput" name="bookTitle"
+          [(ngModel)]="newBook.bookTitle" #title="ngModel" required minlength="1" maxlength="255"
+          placeholder="Enter book title" [class.is-invalid]="title.invalid && title.touched" />
+        @if (title.invalid && title.touched) {
+          <div class="invalid-feedback d-block">Title is required (max 255 characters).</div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="bookAuthorInput" class="form-label">Book Author</label>
+        <input type="text" class="form-control" id="bookAuthorInput" name="bookAuthor"
+          [(ngModel)]="newBook.bookAuthor" #author="ngModel" required minlength="1" maxlength="255"
+          placeholder="Enter book author" [class.is-invalid]="author.invalid && author.touched" />
+        @if (author.invalid && author.touched) {
+          <div class="invalid-feedback d-block">Author is required (max 255 characters).</div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="bookDescriptionInput" class="form-label">Book Description</label>
+        <input type="text" class="form-control" id="bookDescriptionInput" name="bookDescription"
+          [(ngModel)]="newBook.bookDescription" #desc="ngModel" required minlength="1" maxlength="500"
+          placeholder="Enter book description" [class.is-invalid]="desc.invalid && desc.touched" />
+        @if (desc.invalid && desc.touched) {
+          <div class="invalid-feedback d-block">Description is required (max 500 characters).</div>
+        }
+      </div>
+
+      <div class="mb-4">
+        <label for="bookCategoryInput" class="form-label">Book Category</label>
+        <input type="text" class="form-control" id="bookCategoryInput" name="bookCategory"
+          [(ngModel)]="newBook.bookCategory" #category="ngModel" required minlength="1" maxlength="20"
+          placeholder="Enter book category" [class.is-invalid]="category.invalid && category.touched" />
+        @if (category.invalid && category.touched) {
+          <div class="invalid-feedback d-block">Category is required (max 20 characters).</div>
+        }
+      </div>
+
+      <button type="submit" class="btn btn-arl px-4" [disabled]="bookForm.invalid">Submit</button>
+    </form>
+  </div>
+</div>

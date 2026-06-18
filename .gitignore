@@ -1,0 +1,27 @@
+# ---- Build output ----
+**/target/
+**/dist/
+**/out-tsc/
+**/build/
+
+# ---- Dependencies ----
+**/node_modules/
+
+# ---- Test coverage ----
+**/coverage/
+**/.angular/
+
+# ---- IDE / tooling ----
+.idea/
+.vscode/
+.claude/
+*.iml
+
+# ---- OS / temp ----
+Thumbs.db
+.DS_Store
+
+# ---- Office temp lock files ----
+~$*.docx
+~$*.xlsx
+~$*.pptx

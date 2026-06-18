@@ -1,0 +1,37 @@
+.arl-navbar {
+  background-color: var(--arl-primary-dark);
+}
+
+.arl-navbar .navbar-brand {
+  color: #fff8ef;
+  font-size: 1.3rem;
+  letter-spacing: 0.3px;
+}
+
+.arl-navbar .nav-link {
+  color: #f0e2cf;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.arl-navbar .nav-link:hover {
+  color: #fff;
+}
+
+.arl-navbar .nav-link.active {
+  color: #fff;
+  border-bottom: 2px solid var(--arl-accent);
+}
+
+.arl-navbar .navbar-text {
+  color: #f0e2cf;
+  font-weight: 500;
+}
+
+.arl-navbar .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.arl-navbar .navbar-toggler-icon {
+  filter: invert(1);
+}

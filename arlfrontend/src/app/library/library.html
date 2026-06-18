@@ -1,0 +1,63 @@
+<div class="container py-4">
+  <h3 class="text-center mb-4">📚 Library Collection</h3>
+
+  <div class="d-flex justify-content-center mb-4">
+    <form class="d-flex w-75" style="max-width: 600px;" (ngSubmit)="searchBook()">
+      <input class="form-control me-2" type="search" name="searchTitle"
+        placeholder="Search by book title…" aria-label="Search book title"
+        [(ngModel)]="searchTitle" />
+      <button class="btn btn-arl px-4" type="submit">Search</button>
+    </form>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="d-flex justify-content-center">
+      <div class="alert alert-danger text-center w-75 animate-fade" style="max-width: 600px;" role="alert">
+        {{ errorMessage() }}
+      </div>
+    </div>
+  }
+
+  @if (loading()) {
+    <p class="text-center text-muted">Loading books…</p>
+  }
+
+  <div class="d-flex justify-content-center">
+    <div class="w-75" style="max-width: 950px;">
+      <table class="table arl-table mb-0">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (book of books; track book.bookID) {
+            <tr>
+              <td>{{ book.bookID }}</td>
+              <td>{{ book.bookTitle }}</td>
+              <td>{{ book.bookAuthor }}</td>
+              <td>{{ book.bookDescription }}</td>
+              <td><span class="badge rounded-pill text-bg-light border">{{ book.bookCategory }}</span></td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="text-center text-muted py-4">No books found.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  @if (totalPages > 1) {
+    <div class="d-flex align-items-center justify-content-center gap-3 mt-4">
+      <button class="btn btn-arl-outline" type="button" [disabled]="firstPage" (click)="prevPage()">‹ Previous</button>
+      <span class="text-muted fw-bold">Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+      <button class="btn btn-arl-outline" type="button" [disabled]="lastPage" (click)="nextPage()">Next ›</button>
+    </div>
+  }
+</div>

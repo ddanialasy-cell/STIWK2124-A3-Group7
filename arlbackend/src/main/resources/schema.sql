@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS books (
+    bookID BIGINT AUTO_INCREMENT PRIMARY KEY,
+    bookTitle VARCHAR(255) NOT NULL,
+    bookAuthor VARCHAR(255) NOT NULL,
+    bookDescription VARCHAR(500) NOT NULL,
+    bookCategory VARCHAR(20) NOT NULL
+);

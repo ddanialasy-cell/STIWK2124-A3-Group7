@@ -1,0 +1,51 @@
+# ARL – Accessible Reading List
+# One-command deployment: MySQL + Spring Boot backend + Angular (nginx) frontend.
+#
+#   docker compose up --build
+#
+# Then open http://localhost:4200  (login: admin / admin123)
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: arl-mysql
+    environment:
+      MYSQL_DATABASE: arl_db
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: arluser
+      MYSQL_PASSWORD: arlpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uarluser", "-parlpass"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./arlbackend
+    container_name: arl-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/arl_db?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: arluser
+      SPRING_DATASOURCE_PASSWORD: arlpass
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  frontend:
+    build: ./arlfrontend
+    container_name: arl-frontend
+    # Host port 4200 keeps the browser origin at http://localhost:4200,
+    # which matches the backend CORS allow-list.
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:

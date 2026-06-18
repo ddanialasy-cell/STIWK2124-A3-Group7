@@ -1,0 +1,43 @@
+<div class="auth-wrapper">
+  <form class="auth-card" (ngSubmit)="submit()" #loginForm="ngForm">
+    <div class="auth-icon">🔐</div>
+    <h3 class="auth-title">Librarian Login</h3>
+    <p class="auth-subtitle">Sign in to add, edit or remove books.</p>
+
+    @if (error()) {
+      <div class="alert alert-danger py-2" role="alert">{{ error() }}</div>
+    }
+
+    <div class="mb-3 text-start">
+      <label for="usernameInput" class="form-label">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="usernameInput"
+        name="username"
+        [(ngModel)]="username"
+        required
+        autocomplete="username"
+        placeholder="Enter username" />
+    </div>
+
+    <div class="mb-3 text-start">
+      <label for="passwordInput" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="passwordInput"
+        name="password"
+        [(ngModel)]="password"
+        required
+        autocomplete="current-password"
+        placeholder="Enter password" />
+    </div>
+
+    <button type="submit" class="btn btn-arl w-100" [disabled]="loginForm.invalid || loading()">
+      @if (loading()) { Signing in… } @else { Sign In }
+    </button>
+
+    <a routerLink="/library" class="auth-link">Continue browsing without signing in</a>
+  </form>
+</div>

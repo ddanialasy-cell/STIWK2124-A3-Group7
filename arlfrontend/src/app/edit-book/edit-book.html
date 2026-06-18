@@ -1,0 +1,52 @@
+<div class="container py-3">
+  @if (alertMessage()) {
+    <div class="d-flex justify-content-center">
+      <div class="alert text-center w-75 animate-fade {{ alertClass() }}" style="max-width: 640px;" role="alert">
+        {{ alertMessage() }}
+      </div>
+    </div>
+  }
+
+  <div class="d-flex justify-content-center mb-4">
+    <form class="d-flex w-75" style="max-width: 640px;" (ngSubmit)="editSearchBook()">
+      <input class="form-control me-2" type="number" id="bookIDInput" name="searchBookID"
+        [(ngModel)]="searchBookID" #search="ngModel" required
+        placeholder="Enter Book ID to edit" aria-label="Enter Book ID"
+        [class.is-invalid]="search.invalid && search.touched" />
+      <button class="btn btn-arl px-4" type="submit">Search</button>
+    </form>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <form class="arl-card p-4 w-75" style="max-width: 640px;" #editForm="ngForm"
+      (ngSubmit)="editForm.form.valid && retrievedBook.bookID !== 0 && editBook()">
+      <h4 class="mb-4"><b>✏️ Edit Book (ID: {{ retrievedBook.bookID || 'None' }})</b></h4>
+
+      <div class="mb-3">
+        <label for="editBookTitleInput" class="form-label">Book Title</label>
+        <input type="text" class="form-control" id="editBookTitleInput" name="bookTitle"
+          [(ngModel)]="retrievedBook.bookTitle" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="editBookAuthorInput" class="form-label">Book Author</label>
+        <input type="text" class="form-control" id="editBookAuthorInput" name="bookAuthor"
+          [(ngModel)]="retrievedBook.bookAuthor" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="editBookDescriptionInput" class="form-label">Book Description</label>
+        <input type="text" class="form-control" id="editBookDescriptionInput" name="bookDesc"
+          [(ngModel)]="retrievedBook.bookDescription" required />
+      </div>
+
+      <div class="mb-4">
+        <label for="editBookCategoryInput" class="form-label">Book Category</label>
+        <input type="text" class="form-control" id="editBookCategoryInput" name="bookCate"
+          [(ngModel)]="retrievedBook.bookCategory" required />
+      </div>
+
+      <button type="submit" class="btn btn-arl px-4" [disabled]="editForm.invalid || retrievedBook.bookID === 0">Update</button>
+    </form>
+  </div>
+</div>
