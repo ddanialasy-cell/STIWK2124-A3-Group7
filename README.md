@@ -1,4 +1,4 @@
-# STIWK2124-A2-Group7
+# STIWK2124-A3-Group7
 
 ## Accessible Reading List (ARL) Management System
 
