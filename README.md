@@ -109,7 +109,7 @@ ng version
 ## Clone Repository
 
 ```bash
-git clone https://github.com/ddanialasy-cell/STIWK2124-A2-Group7.git
+git clone https://github.com/ddanialasy-cell/STIWK2124-A3-Group7.git
 cd STIWK2124-A2-Group7
 ```
 
